@@ -1,24 +1,19 @@
-export const config = {
-  runtime: "edge",
-};
-
 export default async function handler(req, res) {
-  // Handle preflight (CORS) requests
+  // --- Enable CORS ---
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // --- Handle preflight requests ---
   if (req.method === "OPTIONS") {
-    return res.status(200).set({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    }).end();
+    return res.status(200).end();
   }
 
   const food = req.query.food || "a healthy food";
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
-    return res.status(500).set({
-      "Access-Control-Allow-Origin": "*",
-    }).json({ error: "Missing GEMINI_API_KEY" });
+    return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
   }
 
   try {
@@ -46,15 +41,9 @@ export default async function handler(req, res) {
       data.candidates?.[0]?.content?.parts?.[0]?.text ||
       "No response from model.";
 
-    return res.status(200).set({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    }).json({ text });
+    res.status(200).json({ text });
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    return res.status(500).set({
-      "Access-Control-Allow-Origin": "*",
-    }).json({ error: "Failed to fetch from Gemini API." });
+    res.status(500).json({ error: "Failed to fetch from Gemini API." });
   }
 }
