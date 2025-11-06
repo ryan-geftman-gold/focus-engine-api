@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             {
               parts: [
                 {
-                  text: `You are an enthusiastic dietitian. Write two sentences describing the single, most powerful health benefit of ${food}, following this structure: "The main health benefit of [food], above all others, is their role as an exceptional source of [nutrient/component], which is crucial for [function] and [function]. This [nutrient/component descriptor] actively helps to [positive outcome 1], while supporting [positive outcome 2] and promoting [long-term well-being benefit]!"`,
+                  text: `You are a registered dietitian who writes concise, factual nutrition explanations. Write two professional sentences explaining the single most relevant nutritional benefit of ${food}, if any. If the food is mostly a treat or not generally healthy, briefly note that it should be enjoyed occasionally and explain why. Avoid humor, exaggeration, or enthusiasm — be informative and neutral.`,
                 },
               ],
             },
