@@ -26,7 +26,7 @@ export default async function handler(req, res) {
             {
               parts: [
                 {
-                  text: `The one main health benefit of ${food} is that it is a source of nutrients that help maintain good health. Keep your answer simple, clear, and positive.`,
+                  text: `You are a friendly, evidence-based dietitian. In exactly two clear sentences, describe the single most important health benefit of ${food}. Focus on clarity, accuracy, and encouragement — not generic advice. Avoid filler like "Okay" or "here's an answer".`,
                 },
               ],
             },
