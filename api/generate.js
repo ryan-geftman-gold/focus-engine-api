@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             {
               parts: [
                 {
-                  text: `You are a registered dietitian who writes concise, factual nutrition explanations. Write two professional sentences explaining the single most relevant nutritional benefit of ${food}, if any. If the food is mostly a treat or not generally healthy, briefly note that it should be enjoyed occasionally and explain why. Avoid humor, exaggeration, or enthusiasm — be informative and neutral.`,
+                  text: `Write one simple, clear sentence that starts exactly with the phrase: "The one main health benefit of ${food} is that..." Keep the tone friendly and educational, not scientific or clinical. Use plain English so anyone can understand it easily. Focus only on the most important positive health aspect, and avoid adding any disclaimers, warnings, or extra sentences.`,
                 },
               ],
             },
